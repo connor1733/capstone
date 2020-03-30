@@ -8,9 +8,9 @@
 
 ### Stage 2 Kernel Exploit
 
-- [ ] Find vulnerable kernel version for CVE-2019-2181 **difficulty -> easyish**
-- [ ] Compile it for arm android  **difficulty -> easy**
-- [ ]  Get it on the phone **difficulty -> mediumish?**
+- [X] Find vulnerable kernel version for CVE-2019-2181 **difficulty -> easyish**
+- [X] Compile it for arm android  **difficulty -> easy**
+- [X]  Get it on the phone **difficulty -> mediumish?**
 - [ ] Write/take exploit to get it working from adb shell **difficulty -> easy/medium/hard** <- depends on what you want
 - [ ] Take working exploit and get it working from chrome **difficulty -> medium/hard**
 
