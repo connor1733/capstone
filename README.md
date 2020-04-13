@@ -4,6 +4,8 @@
 ### Stage 1 Chrome Exploit
 
 - [x] Get stage 1 exploit working on chrome browser on x86-64 linux machine (only works on the javascript shell as of now) **difficulty -> easyish**
+- [ ] Compile Chrome for ARM
+- [ ] Compile d8 for ARM and test exploit on d8 shell
 - [ ] Get stage 1 exploit working on chrome browser on actual arm phone (shell then browser) **difficulty  -> medium**
 
 ### Stage 2 Kernel Exploit
