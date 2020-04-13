@@ -23,4 +23,10 @@
 - [ ] Post it to twitter
 
 ### C2 Server
+- [ ] Listen for phone and send exploit file
+- [ ] Listen again and send implant
+- [ ] Pull stego-hidden data from Twitter API
+- [ ] Undo the stego, leaving raw WhatsApp database
+- [ ] Parse WhatsApp database for messages
+- [ ] Move C2 infrastructure off of localhost to an accessible IP address, craft link to the C2
 
