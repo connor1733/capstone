@@ -45,7 +45,8 @@ def decode_whatsapp_messages():
     message_dict = {}
     for message in messages:
         if message[1] not in message_dict:
-            message_dict[message[1]] = [(message[6], message[2], message[7])]
+            if message[6] is not None:
+                message_dict[message[1]] = [(message[6], message[2], message[7])]
         else:
             message_dict[message[1]].append((message[6], message[2], message[7]))
 
