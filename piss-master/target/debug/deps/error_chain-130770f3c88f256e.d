@@ -1,0 +1,11 @@
+/Users/connor/Desktop/piss-master/target/debug/deps/error_chain-130770f3c88f256e.rmeta: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/impl_error_chain_kind.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/error_chain.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/quick_main.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/backtrace.rs
+
+/Users/connor/Desktop/piss-master/target/debug/deps/liberror_chain-130770f3c88f256e.rlib: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/impl_error_chain_kind.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/error_chain.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/quick_main.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/backtrace.rs
+
+/Users/connor/Desktop/piss-master/target/debug/deps/error_chain-130770f3c88f256e.d: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/impl_error_chain_kind.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/error_chain.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/quick_main.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/backtrace.rs
+
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/lib.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/impl_error_chain_kind.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/error_chain.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/quick_main.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/backtrace.rs:

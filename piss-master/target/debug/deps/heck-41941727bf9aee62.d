@@ -1,0 +1,13 @@
+/Users/connor/Desktop/piss-master/target/debug/deps/heck-41941727bf9aee62.rmeta: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/camel.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/kebab.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/mixed.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/shouty_snake.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/snake.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/title.rs
+
+/Users/connor/Desktop/piss-master/target/debug/deps/libheck-41941727bf9aee62.rlib: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/camel.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/kebab.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/mixed.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/shouty_snake.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/snake.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/title.rs
+
+/Users/connor/Desktop/piss-master/target/debug/deps/heck-41941727bf9aee62.d: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/camel.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/kebab.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/mixed.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/shouty_snake.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/snake.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/title.rs
+
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/lib.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/camel.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/kebab.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/mixed.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/shouty_snake.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/snake.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/heck-0.3.1/src/title.rs:

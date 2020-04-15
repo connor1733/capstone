@@ -1,0 +1,11 @@
+/Users/connor/Desktop/piss-master/target/aarch64-linux-android/release/deps/crc32fast-efb568b346bfe307.rmeta: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/baseline.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/combine.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/specialized/mod.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/table.rs
+
+/Users/connor/Desktop/piss-master/target/aarch64-linux-android/release/deps/libcrc32fast-efb568b346bfe307.rlib: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/baseline.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/combine.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/specialized/mod.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/table.rs
+
+/Users/connor/Desktop/piss-master/target/aarch64-linux-android/release/deps/crc32fast-efb568b346bfe307.d: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/baseline.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/combine.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/specialized/mod.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/table.rs
+
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/lib.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/baseline.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/combine.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/specialized/mod.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/crc32fast-1.2.0/src/table.rs:

@@ -1,0 +1,13 @@
+/Users/connor/Desktop/piss-master/target/debug/deps/memchr-d555af1f55d14552.rmeta: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/fallback.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/iter.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/naive.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/mod.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/avx.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/sse2.rs
+
+/Users/connor/Desktop/piss-master/target/debug/deps/libmemchr-d555af1f55d14552.rlib: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/fallback.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/iter.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/naive.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/mod.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/avx.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/sse2.rs
+
+/Users/connor/Desktop/piss-master/target/debug/deps/memchr-d555af1f55d14552.d: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/fallback.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/iter.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/naive.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/mod.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/avx.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/sse2.rs
+
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/lib.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/fallback.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/iter.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/naive.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/mod.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/avx.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/memchr-2.3.3/src/x86/sse2.rs:

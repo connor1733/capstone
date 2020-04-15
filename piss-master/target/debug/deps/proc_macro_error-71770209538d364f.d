@@ -1,0 +1,11 @@
+/Users/connor/Desktop/piss-master/target/debug/deps/proc_macro_error-71770209538d364f.rmeta: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/dummy.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/diagnostic.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/macros.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/imp/fallback.rs
+
+/Users/connor/Desktop/piss-master/target/debug/deps/libproc_macro_error-71770209538d364f.rlib: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/dummy.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/diagnostic.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/macros.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/imp/fallback.rs
+
+/Users/connor/Desktop/piss-master/target/debug/deps/proc_macro_error-71770209538d364f.d: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/dummy.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/diagnostic.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/macros.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/imp/fallback.rs
+
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/lib.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/dummy.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/diagnostic.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/macros.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/proc-macro-error-0.4.12/src/imp/fallback.rs:

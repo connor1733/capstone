@@ -1,0 +1,13 @@
+/Users/connor/Desktop/piss-master/target/release/deps/quote-4e93d832e0bfc4e9.rmeta: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/ext.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/format.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/ident_fragment.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/to_tokens.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/runtime.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/spanned.rs
+
+/Users/connor/Desktop/piss-master/target/release/deps/libquote-4e93d832e0bfc4e9.rlib: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/ext.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/format.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/ident_fragment.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/to_tokens.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/runtime.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/spanned.rs
+
+/Users/connor/Desktop/piss-master/target/release/deps/quote-4e93d832e0bfc4e9.d: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/ext.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/format.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/ident_fragment.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/to_tokens.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/runtime.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/spanned.rs
+
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/lib.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/ext.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/format.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/ident_fragment.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/to_tokens.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/runtime.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.3/src/spanned.rs:
