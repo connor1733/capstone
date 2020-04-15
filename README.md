@@ -19,7 +19,7 @@
 ### Android Implant
 
 - [X] Set up a dummy native binary for android
-- [ ] Implement/Find library to do stego for the database
+- [X] Implement/Find library to do stego for the database
 - [ ] Post it to twitter
 
 ### C2 Server
