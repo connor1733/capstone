@@ -1,0 +1,11 @@
+/Users/connor/Desktop/example/rust/target/aarch64-linux-android/release/deps/error_chain-d7007914c9c33f6e.rmeta: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/impl_error_chain_kind.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/error_chain.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/quick_main.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/backtrace.rs
+
+/Users/connor/Desktop/example/rust/target/aarch64-linux-android/release/deps/liberror_chain-d7007914c9c33f6e.rlib: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/impl_error_chain_kind.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/error_chain.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/quick_main.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/backtrace.rs
+
+/Users/connor/Desktop/example/rust/target/aarch64-linux-android/release/deps/error_chain-d7007914c9c33f6e.d: /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/lib.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/impl_error_chain_kind.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/error_chain.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/quick_main.rs /Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/backtrace.rs
+
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/lib.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/impl_error_chain_kind.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/error_chain.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/quick_main.rs:
+/Users/connor/.cargo/registry/src/github.com-1ecc6299db9ec823/error-chain-0.12.2/src/backtrace.rs:
