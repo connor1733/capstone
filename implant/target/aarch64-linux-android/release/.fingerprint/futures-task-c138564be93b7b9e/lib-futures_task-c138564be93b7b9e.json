@@ -1,0 +1,1 @@
+{"rustc":13355374433309949680,"features":"[\"alloc\", \"std\"]","target":227964871018505724,"profile":2574335274271406459,"path":16529838123936074772,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"aarch64-linux-android/release/.fingerprint/futures-task-c138564be93b7b9e/dep-lib-futures_task-c138564be93b7b9e"}}],"rustflags":[],"metadata":8141544154866689520}
