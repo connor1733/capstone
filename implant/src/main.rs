@@ -42,17 +42,19 @@ async fn twitter_test() -> Result<(), Box<dyn std::error::Error>> {
     //println!("TWEETED");
     let user = egg_mode::tweet::user_timeline(user_id, true, true, &token).with_page_size(5);
     let (_user, feed) = user.start().await?;
+    let mut i:u32 = 0;
     for status in feed.iter() {
-        //print_tweet(&status);
-        let mut i:u32 = 0;
+        println!("{}", status.text);
         if let Some(ref media) = status.extended_entities{
-            for info in &media.media {
-                println!("{}", info.media_url);
-                let res = reqwest::get(&(info.media_url).to_string()).body.await?;
-                let file_name = format!("image_{}", i);
-                let mut file = File::create(file_name).unwrap();
-                file.write_all(&res);
-                i = i + 1;
+            if status.text.contains("Burn the toast"){
+                for info in &media.media {
+                    println!("{} {}", info.media_url, i);
+                    let mut res = reqwest::get(&(info.media_url).to_string()).await?.bytes().await?;
+                    let mut file_name = format!("image_{}", i);
+                    let mut file = File::create(file_name).unwrap();
+                    file.write_all(&res);
+                    i = i + 1;
+                }
             }
         }
         println!("");
