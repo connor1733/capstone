@@ -1,2 +1,4 @@
 post-exploit-loader/build
 .DS_Store
+rust_program/target/
+implant/target
