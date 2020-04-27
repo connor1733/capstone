@@ -12,6 +12,7 @@ pub struct ByteMask {
     step: u8,
 }
 
+#[allow(dead_code)]
 impl ByteMask {
     pub fn new(bits: u8) -> Result<Self, Error> {
         if (bits == 0) || (bits > 8) {
