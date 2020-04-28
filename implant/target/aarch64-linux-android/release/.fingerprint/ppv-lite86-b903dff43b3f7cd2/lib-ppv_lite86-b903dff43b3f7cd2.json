@@ -1,1 +1,0 @@
-{"rustc":13355374433309949680,"features":"[\"simd\", \"std\"]","target":12220220006950913056,"profile":2574335274271406459,"path":10856152023250029363,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"aarch64-linux-android/release/.fingerprint/ppv-lite86-b903dff43b3f7cd2/dep-lib-ppv_lite86-b903dff43b3f7cd2"}}],"rustflags":[],"metadata":14155036307809790115}

