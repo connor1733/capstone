@@ -20,7 +20,8 @@
 
 - [X] Set up a dummy native binary for android
 - [X] Implement/Find library to do stego for the database
-- [ ] Post it to twitter
+- [X] Ninja stuff
+- [X] Post it to twitter
 
 ### C2 Server
 - [X] Listen for phone and send exploit file

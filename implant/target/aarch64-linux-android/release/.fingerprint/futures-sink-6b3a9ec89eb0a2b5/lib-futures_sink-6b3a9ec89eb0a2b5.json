@@ -1,1 +1,0 @@
-{"rustc":13355374433309949680,"features":"[\"alloc\", \"default\", \"std\"]","target":12155641814678275803,"profile":2574335274271406459,"path":16036707521344293988,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"aarch64-linux-android/release/.fingerprint/futures-sink-6b3a9ec89eb0a2b5/dep-lib-futures_sink-6b3a9ec89eb0a2b5"}}],"rustflags":[],"metadata":7407675505569626460}
