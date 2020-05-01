@@ -7,3 +7,6 @@ implant/target
 **/*.o
 **/*.shellcode
 **/main-asm
+c2-server/encoded_images/*.jpg
+c2-server/encoded_images/*.png
+*.pem
