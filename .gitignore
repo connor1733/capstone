@@ -4,3 +4,4 @@ rust_program/target/
 implant/target
 c2-server/encoded_images/*.jpg
 c2-server/encoded_images/*.png
+*.pem
