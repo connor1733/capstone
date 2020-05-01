@@ -2,3 +2,8 @@ post-exploit-loader/build
 .DS_Store
 rust_program/target/
 implant/target
+**/*.swp
+**/*.swo
+**/*.o
+**/*.shellcode
+**/main-asm
