@@ -15,10 +15,10 @@ def prepare_implant():
 
 def send_implant():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    port =              
+    port =  8080            
     s.bind(('', port))
     s.listen(1)        
-    print("Listening on port 6969")        
+    print("Listening on port "+ str(port))         
     count = 0 
     while count < 1:
         conn, addr = s.accept()
