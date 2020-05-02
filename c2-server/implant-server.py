@@ -1,7 +1,7 @@
 import socket
 
 PORT=8080
-HOST='localhost'
+HOST=''
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
