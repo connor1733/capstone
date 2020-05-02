@@ -7,10 +7,8 @@ import os
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
 def listen_for_phone_and_send_exploit_file():
-    print("Waiting on port 80 for client to connect")
-    server_address = ('', 80)
-    s = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-    s.handle_request()
+    print("Starting web server on port 80")
+    os.system("sudo python3 -m http.server 80")
     
 def prepare_implant():
     pass
