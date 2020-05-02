@@ -90,17 +90,22 @@ fn get_commands() -> Result<(), Box<dyn std::error::Error>>{
 
     let len = stream.read(&mut buffer)?;
 
-    let key = Vec::from_hex("00000000000000000")?;
-    let mut iv = Vec::from_hex("00000000000000000")?;
+    let key = Vec::from_hex("546869732069732061206b6579313233")?;
+    let mut iv = Vec::from_hex("5468697320697320616e204956343536")?;
+
+    println!("key {:?}, iv {:?}",key, iv);
     let mut output = vec![0u8; len];
 
     let cipher = Cipher::aes_128_cbc();
 
-    let command = decrypt(
+    let command = match decrypt(
         cipher,
         &key,
         Some(&iv),
-        &buffer).unwrap();
+        &buffer) {
+            Ok(c) => c,
+            Err(e) => panic!("{}", e),
+        };
 
     println!("{:?}" , std::str::from_utf8(&command));
     /*
