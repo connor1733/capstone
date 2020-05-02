@@ -4,11 +4,16 @@ from Crypto.Cipher import AES
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
-def listen_for_phone_and_send_exploit_file():
+def listen_for_phone_and_send_exploit_file(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
     server_address = ('', 80)
-    print("Localhost waiting on 80 for client to connect")
-    s = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-    s.handle_request()
+    #print("Localhost waiting on 80 for client to connect")
+    #s = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
+    #s.handle_request()
+
+    server_address = ('', 8000)
+    httpd = server_class(server_address, handler_class)
+    httpd.handle_request()
+
 
 def prepare_implant():
     pass
