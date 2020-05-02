@@ -11,6 +11,7 @@ def listen_for_phone_and_send_exploit_file():
     s.handle_request()
 
 def prepare_implant():
+    pass
 
 def send_implant():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
