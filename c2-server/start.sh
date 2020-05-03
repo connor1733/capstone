@@ -6,4 +6,4 @@ sleep 5
 sudo python3 -m http.server 80 &
 echo "Started HTTP server on port 80"
 sleep 5
-sudo python3 serverpy
+sudo python3 server.py
