@@ -19,7 +19,7 @@
 ### Android Implant
 
 - [X] Set up a dummy native binary for android
-- [X] Implement/Find library to do encrypt
+- [X] Compile openssl library to do encryption
 - [X] Ninja stuff
 - [X] Exfil data
 
