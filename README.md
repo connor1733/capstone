@@ -1,4 +1,5 @@
 # Capstone
+Created by Patrick Casey, Alex Guerriero and Connor Reardon
 ## Things TODO
 
 ### Stage 1 Chrome Exploit
